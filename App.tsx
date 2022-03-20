@@ -2,14 +2,18 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {NativeBaseProvider} from 'native-base';
 import MainStack from './src/navigation/MainStack';
+import {Provider} from 'react-redux';
+import store from './src/store';
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <NativeBaseProvider>
-        <MainStack />
-      </NativeBaseProvider>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={styles.container}>
+        <NativeBaseProvider>
+          <MainStack />
+        </NativeBaseProvider>
+      </SafeAreaView>
+    </Provider>
   );
 };
 

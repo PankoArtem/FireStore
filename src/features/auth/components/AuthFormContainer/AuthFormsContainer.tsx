@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Formik, FormikConfig, FormikValues} from 'formik';
 import {Button, FormControl, Input, VStack} from 'native-base';
 
@@ -45,4 +45,4 @@ const AuthFormContainer: React.FC<AuthFormContainerProps> = ({
   );
 };
 
-export default AuthFormContainer;
+export default memo(AuthFormContainer);
