@@ -12,7 +12,33 @@ export const signInFields = [
   },
 ];
 
+export const signUpFields = [
+  ...signInFields,
+  {
+    name: 'name',
+    label: 'Name',
+    placeholder: 'Name',
+  },
+  {
+    name: 'surname',
+    label: 'Surname',
+    placeholder: 'Surname',
+  },
+  {
+    name: 'age',
+    label: 'Age',
+    placeholder: 'Age',
+  },
+];
+
 export const signInInitialValues = {
   email: '',
   password: '',
+};
+
+export const signUpInitialValues = {
+  ...signInInitialValues,
+  name: '',
+  surname: '',
+  age: '',
 };

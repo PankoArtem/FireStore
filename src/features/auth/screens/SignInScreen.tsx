@@ -1,18 +1,20 @@
-import React, {useCallback} from 'react';
-import {VStack} from 'native-base';
+import React from 'react';
+import {Button, VStack} from 'native-base';
 import AuthFormContainer from '../components/AuthFormContainer/AuthFormsContainer';
 import {signInFields, signInInitialValues} from '../helpers/constants';
-import {TextInput} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {signUpThunk} from '../thunks';
+import {signInThunk} from '../thunks';
 import {FormikValues} from 'formik';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const SignInScreen: React.FC = () => {
+  const navigation = useNavigation<NavigationProp<{'Sign Up': undefined}>>();
+
   const dispatch = useDispatch();
 
-  const handleSubmit = useCallback(({email, password}: FormikValues) => {
-    dispatch(signUpThunk({email, password}));
-  }, []);
+  const handleSubmit = ({email, password}: FormikValues) => {
+    dispatch(signInThunk({email, password}));
+  };
 
   return (
     <VStack space={'sm'} p={2}>
@@ -22,7 +24,7 @@ const SignInScreen: React.FC = () => {
         initialValues={signInInitialValues}
         onSubmit={handleSubmit}
       />
-      <TextInput />
+      <Button onPress={() => navigation.navigate('Sign Up')}>Sign up</Button>
     </VStack>
   );
 };
