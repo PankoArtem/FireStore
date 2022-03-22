@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, VStack} from 'native-base';
-import AuthFormContainer from '../components/AuthFormContainer/AuthFormsContainer';
+import AuthFormContainer from '../components/AuthFormContainer';
 import {signInFields, signInInitialValues} from '../helpers/constants';
 import {useDispatch} from 'react-redux';
 import {signInThunk} from '../thunks';

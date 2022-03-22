@@ -7,6 +7,7 @@ export interface AuthState {
   uid?: string;
   user?: User;
   errorMessage?: string;
+  userError?: string;
 }
 
 const initialState: AuthState = {
@@ -67,8 +68,9 @@ const authSlice = createSlice({
       ...state,
       user: action.payload,
     }));
-    builder.addCase(getUserThunk.rejected, state => ({
+    builder.addCase(getUserThunk.rejected, (state, action) => ({
       ...state,
+      userError: action.payload?.nativeErrorMessage,
     }));
   },
 });
