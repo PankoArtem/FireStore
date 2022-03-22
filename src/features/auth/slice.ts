@@ -51,9 +51,13 @@ const authSlice = createSlice({
       isLoading: false,
       errorMessage: action.payload?.nativeErrorMessage,
     }));
-    builder.addCase(signOutThunk.pending, state => ({...state}));
+    builder.addCase(signOutThunk.pending, state => ({
+      ...state,
+      isLoading: true,
+    }));
     builder.addCase(signOutThunk.fulfilled, state => ({
       ...state,
+      isLoading: false,
       uid: undefined,
       user: undefined,
     }));

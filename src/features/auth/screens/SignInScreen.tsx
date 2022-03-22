@@ -6,6 +6,7 @@ import {useDispatch} from 'react-redux';
 import {signInThunk} from '../thunks';
 import {FormikValues} from 'formik';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {signInSchema} from '../helpers/validationSchemas';
 
 const SignInScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<{'Sign Up': undefined}>>();
@@ -23,6 +24,7 @@ const SignInScreen: React.FC = () => {
         submitButtonText={'Sign In'}
         initialValues={signInInitialValues}
         onSubmit={handleSubmit}
+        validationSchema={signInSchema}
       />
       <Button onPress={() => navigation.navigate('Sign Up')}>Sign up</Button>
     </VStack>

@@ -5,8 +5,9 @@ import SignInScreen from '../features/auth/screens/SignInScreen';
 import SignUpScreen from '../features/auth/screens/SignUpScreen';
 import Dashboard from '../features/dashboard/screens/Dashboard';
 import auth from '@react-native-firebase/auth';
-import {useAppDispatch} from '../store/hooks';
+import {useAppDispatch, useAppSelector} from '../store/hooks';
 import {getUserThunk} from '../features/auth/thunks';
+import {Spinner, VStack} from 'native-base';
 
 const navTheme = {
   ...DefaultTheme,
@@ -20,6 +21,8 @@ const Stack = createNativeStackNavigator();
 
 const MainStack: React.FC = () => {
   const dispatch = useAppDispatch();
+
+  const {isLoading} = useAppSelector(state => state.authReducer);
 
   const [uid, setUid] = useState<string | undefined>();
 
@@ -35,6 +38,14 @@ const MainStack: React.FC = () => {
       dispatch(getUserThunk(uid));
     }
   }, [uid]);
+
+  if (isLoading) {
+    return (
+      <VStack flex={1} justifyContent={'center'} alignItems={'center'}>
+        <Spinner size={'lg'} />
+      </VStack>
+    );
+  }
 
   return (
     <NavigationContainer theme={navTheme}>

@@ -5,6 +5,7 @@ import {VStack} from 'native-base';
 import {useDispatch} from 'react-redux';
 import {signUpThunk} from '../thunks';
 import {FormikValues} from 'formik';
+import {signUpSchema} from '../helpers/validationSchemas';
 
 const SignUpScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -23,9 +24,10 @@ const SignUpScreen: React.FC = () => {
     <VStack space={'sm'} p={2}>
       <AuthFormContainer
         fields={signUpFields}
-        submitButtonText={'Sign In'}
+        submitButtonText={'Sign Up'}
         initialValues={signUpInitialValues}
         onSubmit={handleSubmit}
+        validationSchema={signUpSchema}
       />
     </VStack>
   );
