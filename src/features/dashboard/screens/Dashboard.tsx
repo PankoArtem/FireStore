@@ -1,19 +1,11 @@
 import React from 'react';
-import {Button} from 'native-base';
-import {useAppDispatch} from '../../../store/hooks';
-import {signOutThunk} from '../../auth/thunks';
+import {useAppSelector} from '../../../store/hooks';
+import UserCard from '../components/UserCard';
 
 const Dashboard: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const {user} = useAppSelector(state => state.authReducer);
 
-  return (
-    <Button
-      onPress={() => {
-        dispatch(signOutThunk());
-      }}>
-      Sign Out
-    </Button>
-  );
+  return <UserCard {...user} />;
 };
 
 export default Dashboard;

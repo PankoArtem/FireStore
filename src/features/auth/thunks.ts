@@ -47,14 +47,15 @@ export const signOutThunk = createAsyncThunk<void, void, KnownError>(
   },
 );
 
-export const getUserThunk = createAsyncThunk(
-  'auth/getUser',
-  async (uid: string) => {
-    try {
-      const user: User | undefined = await getDoc('Users', uid);
-      return user;
-    } catch (e) {
-      throw e;
-    }
-  },
-);
+export const getUserThunk = createAsyncThunk<
+  User | undefined,
+  string,
+  KnownError
+>('auth/getUser', async uid => {
+  try {
+    const user: User | undefined = await getDoc('Users', uid);
+    return user;
+  } catch (e) {
+    throw e;
+  }
+});

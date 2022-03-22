@@ -8,6 +8,7 @@ import auth from '@react-native-firebase/auth';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
 import {getUserThunk} from '../features/auth/thunks';
 import {Spinner, VStack} from 'native-base';
+import SignOutButton from '../features/auth/components/SignOutButton';
 
 const navTheme = {
   ...DefaultTheme,
@@ -51,17 +52,23 @@ const MainStack: React.FC = () => {
     <NavigationContainer theme={navTheme}>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {!uid && (
-          <>
+          <Stack.Group>
             <Stack.Screen name={'Sign In'} component={SignInScreen} />
             <Stack.Screen name={'Sign Up'} component={SignUpScreen} />
-          </>
+          </Stack.Group>
         )}
         {uid && (
-          <Stack.Screen
-            name={'Dashboard'}
-            navigationKey={uid ? 'user' : 'guest'}
-            component={Dashboard}
-          />
+          <Stack.Group
+            screenOptions={{
+              headerShown: true,
+              headerRight: SignOutButton,
+            }}>
+            <Stack.Screen
+              name={'Dashboard'}
+              navigationKey={uid ? 'user' : 'guest'}
+              component={Dashboard}
+            />
+          </Stack.Group>
         )}
       </Stack.Navigator>
     </NavigationContainer>

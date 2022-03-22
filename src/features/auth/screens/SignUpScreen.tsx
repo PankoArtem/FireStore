@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthFormContainer from '../components/AuthFormContainer/AuthFormsContainer';
+import AuthFormContainer from '../components/AuthFormContainer';
 import {signUpFields, signUpInitialValues} from '../helpers/constants';
 import {VStack} from 'native-base';
 import {useDispatch} from 'react-redux';
